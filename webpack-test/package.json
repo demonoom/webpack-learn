@@ -1,0 +1,21 @@
+{
+  "name": "webpack-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lwebpack": "webpack --progress --display-modules --module-bind 'css=style-loader!css-loader!' --watch --display-reasons"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^1.13.2"
+  },
+  "//": "webpack高级参数",
+  "//": "--progress 打包过程出现进度条 --display-modules  列出打包详细模块,使用何种loader打包  --watch 代码一经改变自动打包",
+  "//": "'css=style-loader!css-loader!'  使得webpack可以处理css文件并将处理后的插入到html中",
+  "//": "--display-reasons  列出打包原因"
+}
