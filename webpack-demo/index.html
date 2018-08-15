@@ -2,8 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>webpack demo</title>
+    <!--js模版语言   ejs-->
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <!--<script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>-->
 </head>
 <body>
+    <!--<%= htmlWebpackPlugin.options.date %>-->
+
+    <% for(var k in htmlWebpackPlugin.files){ %>
+        <%= k %> : <%= JSON.stringify(htmlWebpackPlugin.files[k]) %>
+    <% } %>
+
+    <% for(var k in htmlWebpackPlugin.options){ %>
+    <%= k %> : <%= JSON.stringify(htmlWebpackPlugin.options[k]) %>
+    <% } %>
+
+    <!--<script src="<%= htmlWebpackPlugin.files.chunks.a.entry %>"></script>-->
+
+
+    <!--我是一行注释-->
 </body>
 </html>

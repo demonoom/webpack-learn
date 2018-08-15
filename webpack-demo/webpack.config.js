@@ -13,23 +13,64 @@ module.exports = {
     // entry: ['./src/script/main.js', './src/script/a.js'],   //打包入口
     entry: {
         main: './src/script/main.js',
-        a: './src/script/a.js'
+        a: './src/script/a.js',
+        b: './src/script/b.js',
+        c: './src/script/c.js'
     },
     output: {
         path: './dist',
-        filename: 'js/[name]-[chunkhash].js'
+        filename: 'js/[name]-[chunkhash].js',  //增加一个相对路径
+        publicPath: 'http://cdn.com/'   //一个占位符,用于上线之前,打包后的引用地址替换为线上地址
     },
     /**
      * webpack插件  简单创建 HTML 文件，用于服务器访问
-     * template HTML的模版文件 路径是context 代表的路径
+     * template HTML的模版文件 路径是context(上下文) 代表的路径
      * filename  生成的文件名
      * inject  script标签所在的位置
+     * title date  设置参数传到html中
      */
+    // plugins: [
+    //     new htmlWebpackPlugin({
+    //         template: 'index.html',
+    //         // filename: 'index-[hash].html',
+    //         filename: 'index.html',   //生成的html文件名
+    //         //inject: 'head',    //生成的脚本放在哪个位置(head标签还是body标签...)
+    //         inject: false,
+    //         title: 'webpack is good',
+    //         date: new Date(),
+    //         minify: {
+    //             removeComments: true,   //删除注释
+    //             collapseWhitespace: true,     //删除空格
+    //         }
+    //     })
+    // ]
     plugins: [
         new htmlWebpackPlugin({
             template: 'index.html',
-            filename: 'index-[hash].html',
-            inject: 'head'
+            // filename: 'index-[hash].html',
+            filename: 'a.html',   //生成的html文件名
+            //inject: 'head',    //生成的脚本放在哪个位置(head标签还是body标签...)
+            inject: 'body',
+            title: 'this is a.html',
+            chunks: ['main', 'a']
+        }),
+        new htmlWebpackPlugin({
+            template: 'index.html',
+            // filename: 'index-[hash].html',
+            filename: 'b.html',   //生成的html文件名
+            //inject: 'head',    //生成的脚本放在哪个位置(head标签还是body标签...)
+            inject: 'body',
+            title: 'this is b.html',
+            chunks: ['b']
+        }),
+        new htmlWebpackPlugin({
+            template: 'index.html',
+            // filename: 'index-[hash].html',
+            filename: 'c.html',   //生成的html文件名
+            //inject: 'head',    //生成的脚本放在哪个位置(head标签还是body标签...)
+            inject: 'body',
+            title: 'this is c.html',
+            chunks: ['c']
         })
     ]
 }
